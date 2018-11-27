@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -15,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +27,11 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(includeFieldNames = true)
 public class Filme implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -38,6 +39,8 @@ public class Filme implements Serializable {
     private String diretor;
 
     private String descricao;
+    
+    private LocalDate lancamento;
 
     private LocalDateTime dataCriacao;
 
@@ -85,12 +88,4 @@ public class Filme implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Filme{" + "id=" + id + ", nome=" + nome + ", diretor=" + diretor + ", descricao=" + descricao + ", dataCriacao=" + dataCriacao + ", dataAtualizacao=" + dataAtualizacao + ", categoria=" + categoria + '}';
-    }
-    
-    
-
 }
