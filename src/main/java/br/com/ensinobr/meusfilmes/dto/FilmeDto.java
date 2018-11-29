@@ -1,7 +1,7 @@
 package br.com.ensinobr.meusfilmes.dto;
 
-import br.com.ensinobr.meusfilmes.entities.Categoria;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +17,12 @@ public class FilmeDto implements Serializable{
     private String diretor;
    
     private String descricao;
+    
+    private LocalDate lancamento;
    
     private LocalDateTime dataCriacao;
    
     private LocalDateTime dataAtualizacao;
     
-    private Categoria categoria;
+    private CategoriaDto categoria;
 }

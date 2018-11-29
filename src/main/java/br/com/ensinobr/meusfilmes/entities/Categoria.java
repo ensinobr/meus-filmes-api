@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,9 +21,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "categorias")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -36,8 +41,10 @@ public class Categoria implements Serializable {
 
     private String nome;
 
+    @CreatedDate
     private LocalDateTime dataCriacao;
 
+    @LastModifiedDate
     private LocalDateTime dataAtualizacao;
 
     public Categoria(String nome) {
@@ -47,17 +54,6 @@ public class Categoria implements Serializable {
     @OneToMany
     @JoinColumn(name = "categoria_id")
     private Collection<Filme> filmes;
-
-    @PrePersist
-    private void prePersist() {
-        this.dataCriacao = LocalDateTime.now();
-        this.dataAtualizacao = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void preUpdate() {
-        this.dataAtualizacao = LocalDateTime.now();
-    }
 
     @Override
     public int hashCode() {

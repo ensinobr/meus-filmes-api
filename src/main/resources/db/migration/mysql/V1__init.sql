@@ -1,5 +1,5 @@
 CREATE TABLE `categorias` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL auto_increment,
   `data_atualizacao` datetime DEFAULT NULL,
   `data_criacao` datetime DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `categorias` (
 );
 
 CREATE TABLE `filmes` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL auto_increment,
   `data_atualizacao` datetime DEFAULT NULL,
   `data_criacao` datetime DEFAULT NULL,
   `descricao` varchar(255) DEFAULT NULL,
